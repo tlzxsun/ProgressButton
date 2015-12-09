@@ -14,5 +14,5 @@
         android:id="@+id/progress_button"
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        progress:text="HAHAHA"/>
+        progress:pb_text="ProgressButton"/>
 </RelativeLayout>

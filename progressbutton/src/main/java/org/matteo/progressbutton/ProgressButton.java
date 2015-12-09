@@ -23,7 +23,7 @@ public class ProgressButton extends View {
     float progress = 1.0f;
     int textColor = Color.WHITE;
     int textSize = 48;
-    String text = "kwkw";
+    String text = "ProgressButton";
 
 
     public ProgressButton(Context context) {
@@ -38,24 +38,23 @@ public class ProgressButton extends View {
     }
 
     private void parseAttributes(TypedArray a) {
-        strokeWidth = (int) a.getDimension(R.styleable.ProgressButton_stroke_width, strokeWidth);
-        gapWidth = (int) a.getDimension(R.styleable.ProgressButton_gap_width, gapWidth);
-        strokeColor = a.getColor(R.styleable.ProgressButton_stroke_color, strokeColor);
-        progressColor = a.getColor(R.styleable.ProgressButton_progress_color, progressColor);
-        progress = a.getFloat(R.styleable.ProgressButton_progress, progress);
-        textColor = a.getColor(R.styleable.ProgressButton_textColor, textColor);
-        textSize = (int) a.getDimension(R.styleable.ProgressButton_textSize, textSize);
-        text = a.getString(R.styleable.ProgressButton_text);
+        strokeWidth = (int) a.getDimension(R.styleable.ProgressButton_pb_stroke_width, strokeWidth);
+        gapWidth = (int) a.getDimension(R.styleable.ProgressButton_pb_gap_width, gapWidth);
+        strokeColor = a.getColor(R.styleable.ProgressButton_pb_stroke_color, strokeColor);
+        progressColor = a.getColor(R.styleable.ProgressButton_pb_progress_color, progressColor);
+        progress = a.getFloat(R.styleable.ProgressButton_pb_progress, progress);
+        textColor = a.getColor(R.styleable.ProgressButton_pb_textColor, textColor);
+        textSize = (int) a.getDimension(R.styleable.ProgressButton_pb_textSize, textSize);
+        text = a.getString(R.styleable.ProgressButton_pb_text);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         int radius = getHeight()/2;
         Paint paint = new Paint();
         paint.setAntiAlias(true);
-
-
 
         Path path = new Path();
         path.moveTo(getHeight()/2, getHeight() - strokeWidth/2);
@@ -73,15 +72,10 @@ public class ProgressButton extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(progressColor);
         canvas.save();
-//        canvas.drawRoundRect(rect3, radius -strokeWidth - spaceWidth, radius - strokeWidth - spaceWidth, paint);
 
 
         RectF rect4 = new RectF(strokeWidth + gapWidth, strokeWidth + gapWidth, (getWidth() - strokeWidth - gapWidth) * progress,
                 getHeight() - strokeWidth - gapWidth);
-//        paint.setColor(Color.YELLOW);
-//        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//        canvas.drawRect(rect4, paint);
         canvas.clipRect(rect4);
         canvas.drawRoundRect(rect3, radius -strokeWidth - gapWidth, radius - strokeWidth - gapWidth, paint);
 
@@ -103,6 +97,46 @@ public class ProgressButton extends View {
         }
     }
 
+    public int getStrokeWidth() {
+        return strokeWidth;
+    }
+
+    public void setStrokeWidth(int strokeWidth) {
+        this.strokeWidth = strokeWidth;
+        postInvalidate();
+    }
+
+    public int getGapWidth() {
+        return gapWidth;
+    }
+
+    public void setGapWidth(int gapWidth) {
+        this.gapWidth = gapWidth;
+        postInvalidate();
+    }
+
+    public int getStrokeColor() {
+        return strokeColor;
+    }
+
+    public void setStrokeColor(int strokeColor) {
+        this.strokeColor = strokeColor;
+        postInvalidate();
+    }
+
+    public int getProgressColor() {
+        return progressColor;
+    }
+
+    public void setProgressColor(int progressColor) {
+        this.progressColor = progressColor;
+        postInvalidate();
+    }
+
+    public float getProgress() {
+        return progress;
+    }
+
     public void setProgress(float progress) {
         this.progress = progress;
         postInvalidate();
@@ -110,6 +144,33 @@ public class ProgressButton extends View {
 
     public void setProgress(int progress) {
         this.progress = progress * 1.0f/100;
+        postInvalidate();
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+        postInvalidate();
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+        postInvalidate();
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
         postInvalidate();
     }
 }
